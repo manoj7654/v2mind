@@ -1,9 +1,4 @@
-const readline = require('readline');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
 
 class Shape {
     constructor(shapeType, alignment, drawChar, rows, columns) {
@@ -18,6 +13,8 @@ class Shape {
         }
     }
 
+
+    // validation for user input
     validateInput() {
         const validShapes = ['triangle', 'square', 'rectangle'];
         const validAlignments = ['left', 'right', 'center'];
@@ -50,6 +47,7 @@ class Shape {
         return true;
     }
 
+    //draw the shape based on the type
     draw() {
         console.log(`Drawing ${this.shapeType} with alignment ${this.alignment}:`);
         if (this.shapeType === 'triangle') {
@@ -62,6 +60,7 @@ class Shape {
         console.log('\n');
     }
 
+    // for triangle draw
     Triangle() {
         for (let i = 1; i <= this.rows; i++) {
             let line = this.Line(i);
@@ -76,6 +75,7 @@ class Shape {
         }
     }
 
+    // fro square draw
     Square() {
         for (let i = 0; i < this.rows; i++) {
             let line = this.Line(this.columns);
@@ -89,6 +89,7 @@ class Shape {
         }
     }
 
+    // for rectangle draw
     Rectangle() {
         for (let i = 0; i < this.rows; i++) {
             let line = this.Line(this.columns);
@@ -102,6 +103,7 @@ class Shape {
         }
     }
 
+    // build a line with a specified length and character
     Line(length, char = this.drawChar) {
         let line = '';
         for (let i = 0; i < length; i++) {
@@ -110,6 +112,17 @@ class Shape {
         return line;
     }
 }
+
+
+
+//  for user input
+const readline = require('readline');
+
+// user  reading input from the command line
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 function askQuestion(query) {
     return new Promise(resolve => rl.question(query, resolve));
